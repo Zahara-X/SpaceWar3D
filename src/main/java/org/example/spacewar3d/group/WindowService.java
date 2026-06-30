@@ -9,16 +9,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import netty.NettyClient;
 import org.example.spacewar3d.enumarated.Value;
+import org.example.spacewar3d.manager.ManagerNetty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class WindowGroup extends Group {
+public class WindowService extends Group {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final String[] texts = {"CONNECT", "SETTINGS", "EXIT"};
     private final NettyClient nettyClient;
+    private final ManagerNetty managerNetty;
     private Button[] buttons;
-    public WindowGroup(NettyClient nettyClient) {
+    public WindowService(NettyClient nettyClient,  ManagerNetty managerNetty) {
         this.nettyClient = nettyClient;
+        this.managerNetty = managerNetty;
     }
 
     public void addButtons() {
@@ -66,7 +69,7 @@ public class WindowGroup extends Group {
         ChannelFuture channelFuture = this.nettyClient.bootstrap.connect((String) host, (Integer) port);
         channelFuture.addListener((ChannelFutureListener) f -> {
             if(f.isSuccess()) {
-                this.nettyClient.channel = f.channel();
+                managerNetty.setChannel(f.channel());
                 logger.info("Connected to server: {}", f.channel().remoteAddress());
             } else {
                 this.nettyClient.group.shutdownGracefully();

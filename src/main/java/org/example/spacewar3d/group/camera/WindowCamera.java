@@ -1,5 +1,8 @@
 package org.example.spacewar3d.group.camera;
-public class WindowCamera {
-    public static void main(String[] args) {
+
+import javafx.scene.PerspectiveCamera;
+
+public class WindowCamera extends PerspectiveCamera {
+    public WindowCamera() {
     }
 }

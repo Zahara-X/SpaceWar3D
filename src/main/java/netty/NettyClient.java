@@ -1,4 +1,4 @@
-package org.example.spacewar3d.netty;
+package netty;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
@@ -11,7 +11,6 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 public class NettyClient {
     public NioEventLoopGroup group;
     public Bootstrap bootstrap;
-    public Channel channel;
     private final int size = 32 * 1024; // 32kb
     public NettyClient() {
         this.group = new NioEventLoopGroup(1);

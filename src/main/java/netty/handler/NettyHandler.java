@@ -1,4 +1,4 @@
-package org.example.spacewar3d.netty.handler;
+package netty.handler;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
